@@ -33,15 +33,12 @@ class Student (models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, default = 1, primary_key = True)
     college_id = models.ForeignKey(College, null = True, on_delete = models.SET_NULL)
 
-class TutorH (models.Model):
+class Tutor (models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, default = 2, primary_key = True)
     degree = models.CharField(max_length = 50)
     identity_document = models.CharField(max_length = 11)
     description = models.CharField(max_length = 100)
-
-class TutorD (models.Model):
-    tutorH_ID = models.OneToOneField(TutorH, null = True, on_delete = models.CASCADE)
-    subject_ID = models.ForeignKey(Subject, null = True, on_delete = models.SET_NULL)   
+    subjects = models.ManyToManyField(Subject, related_name='Subjects')  
 
 
 class User_Request (models.Model):
@@ -54,7 +51,7 @@ class User_Request (models.Model):
         )
 
     student_ID = models.ForeignKey(Student, on_delete = models.CASCADE)
-    tutor_ID = models.ForeignKey(TutorH,  on_delete = models.CASCADE)
+    tutor_ID = models.ForeignKey(Tutor,  on_delete = models.CASCADE)
     status = models.CharField(max_length = 1, choices = REQUEST_STATUS, blank = True, default = 'P')
     request_date = models.DateTimeField("Request date", default = datetime.now())
 

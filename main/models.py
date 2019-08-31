@@ -54,7 +54,7 @@ class User_Request (models.Model):
         )
 
     student_ID = models.ForeignKey(Student, on_delete = models.CASCADE)
-    tutor_id = models.ForeignKey(TutorH,  on_delete = models.CASCADE)
+    tutor_ID = models.ForeignKey(TutorH,  on_delete = models.CASCADE)
     status = models.CharField(max_length = 1, choices = REQUEST_STATUS, blank = True, default = 'P')
     request_date = models.DateTimeField("Request date", default = datetime.now())
 

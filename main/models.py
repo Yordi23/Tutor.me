@@ -15,8 +15,17 @@ class College (models.Model):
 
 
 class Subject (models.Model):
+
+    AREA_GROUP = (
+        ('CB', 'CIENCIAS BASICAS Y AMBIENTALES'),
+        ('SA', 'CIENCIAS DE LA SALUD'),
+        ('SH', 'CIENCIAS SOCIALES Y HUMANIDADES'),
+        ('NG', 'ECONOMIA Y NEGOCIOS'),
+        ('IN', 'INGENIERIAS'),
+        )
+
     name = models.CharField(max_length = 50)
-    area = models.CharField(max_length = 50)
+    area = models.CharField(max_length = 2, choices = AREA_GROUP)
 
     def __str__(self):
         return self.name

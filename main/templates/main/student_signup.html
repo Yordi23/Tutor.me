@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+    
+        <!-- <div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right"></i>
+          </button>
+        </div> -->
+    </form>
+</body>
+</html>

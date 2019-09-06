@@ -16,12 +16,12 @@ class NewUserForm (UserCreationForm):
             user.save()
         return user
 
-class StudentSignUpForm(UserCreationForm):
-    interests = forms.ModelMultipleChoiceField(
-        queryset=Subject.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True
-    )
+# class StudentSignUpForm(UserCreationForm):
+#     interests = forms.ModelMultipleChoiceField(
+#         queryset=Subject.objects.all(),
+#         widget=forms.CheckboxSelectMultiple,
+#         required=True
+#     )
 
-    class Meta(UserCreationForm.Meta):
-        model = User
+#     class Meta(UserCreationForm.Meta):
+#         model = User

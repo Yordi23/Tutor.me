@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -39,16 +40,33 @@ class User (AbstractUser):
 
 
 class Student (models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE, default = 1, primary_key = True)
+    user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     college_id = models.ForeignKey(College, null = True, on_delete = models.SET_NULL)
 
 class Tutor (models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE, default = 2, primary_key = True)
-    degree = models.CharField(max_length = 50)
+    DEGREE_LEVEL = (
+        ('EP', 'EDUCACION PRIMARIA'),
+        ('ES', 'EDUCACION SECUNDARIA'),
+        ('BA', 'BACHILLER'),
+        ('GR', 'GRADO'),
+        ('PG', 'POST-GRADO'),
+        )
+
+
+    user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
+    degree = models.CharField(max_length = 2,choices = DEGREE_LEVEL)
     identity_document = models.CharField(max_length = 11)
     description = models.CharField(max_length = 100)
     subjects = models.ManyToManyField(Subject, related_name='Subjects')  
 
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Tutor.objects.create(user=instance)
+
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.tutor.save()
 
 class User_Request (models.Model):
      

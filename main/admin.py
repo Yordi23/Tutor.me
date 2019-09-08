@@ -6,10 +6,15 @@ from .models import Subject, College, Student, Tutor, User_Request, User
 class SubjectAdmin (admin.ModelAdmin):
     list_display = ('name','area')
 
+class UserAdmin (admin.ModelAdmin):
+    list_display = ('email',)
 
-admin.site.register(User)
+class TutorAdmin (admin.ModelAdmin):
+    list_display = ('user',)
+
+admin.site.register(User,UserAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(College)
 admin.site.register(Student)
-admin.site.register(Tutor)
+admin.site.register(Tutor,TutorAdmin)
 admin.site.register(User_Request)

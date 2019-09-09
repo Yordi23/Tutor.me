@@ -8,9 +8,9 @@ class UserSignUp_Form (UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("first_name","last_name", "email", "password1", "password2")
+        fields = ("username","first_name","last_name", "email", "password1", "password2")
     
-    #@transaction.atomic
+    # #@transaction.atomic
     def save(self, commit = True):
         user = super(UserSignUp_Form, self).save(commit=False)
         user.email = self.cleaned_data['email']

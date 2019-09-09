@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserSignUp_Form, TutorSignUp_Form
-from .models import Tutor,User
+from .models import Tutor,User, Subject
 
 # Create your views here.
 
@@ -19,14 +19,15 @@ def tutor_signup(request):
         user_form = UserSignUp_Form(request.POST)        
         tutor_form = TutorSignUp_Form(request.POST)
 
-        if tutor_form.is_valid():
+        if user_form.is_valid() and tutor_form.is_valid() :
             user = user_form.save()
             
             tutor = Tutor.objects.create(user = user)
             tutor.degree = tutor_form.cleaned_data['degree']
             tutor.identity_document = tutor_form.cleaned_data['identity_document']
             tutor.description = tutor_form.cleaned_data['description']
-            tutor.subjects.set = tutor_form.cleaned_data['subjects']
+            #subjects = Subject.objects.create(tutor_form.cleaned_data['subjects'])
+            #tutor.subjects.add = subjects
             tutor.save()
             #tutor_form.save()
             #messages.success(request, _('Your profile was successfully updated!'))

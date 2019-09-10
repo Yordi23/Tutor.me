@@ -8,6 +8,7 @@
 </head>
 <body>
     <form method="POST">
+        
         {% csrf_token %}
         {{user_form.as_p}}
         {{tutor_form.as_p}}

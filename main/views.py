@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserSignUp_Form, TutorSignUp_Form, StudentSignUp_Form
 from .models import Tutor, User, Subject, Student
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
@@ -9,11 +10,15 @@ from .models import Tutor, User, Subject, Student
 def homepage(request):
     return render(request = request, template_name = "main/home.html")
 
+def homepage_tutor(request):
+    return render(request = request, template_name = "main/homepage_tutor.html")
+
+def homepage_student(request):
+    return render(request = request, template_name = "main/homepage_student.html")
+
 
 
 def tutor_signup(request):
-    # user_form = UserSignUp_Form
-    # tutor_form = TutorSignUp_Form
 
     if request.method == 'POST':
         user_form = UserSignUp_Form(request.POST)        
@@ -30,8 +35,9 @@ def tutor_signup(request):
             tutor.save()
             tutor_form.save(user)
 
+            login(request, user)
             #messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('main:homepage')
+            return render (request, "main/homepage_tutor.html")
         else:
             return HttpResponse("Not valid") 
 
@@ -42,8 +48,6 @@ def tutor_signup(request):
 
 
 def student_signup(request):
-    # user_form = UserSignUp_Form
-    # tutor_form = TutorSignUp_Form
 
     if request.method == 'POST':
         user_form = UserSignUp_Form(request.POST)        
@@ -58,7 +62,7 @@ def student_signup(request):
             student_form.save(user)
   
             #messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('main:homepage')
+            return render (request, "main/homepage_student.html")
         else:
             return HttpResponse("Not valid") 
 

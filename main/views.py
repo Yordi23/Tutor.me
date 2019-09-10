@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserSignUp_Form, TutorSignUp_Form, StudentSignUp_Form
 from .models import Tutor, User, Subject, Student
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
@@ -70,3 +71,24 @@ def student_signup(request):
     student_form = StudentSignUp_Form
 
     return render (request, "main/student_signup.html", context={"user_form":user_form,"student_form":student_form})
+
+
+def login_request (request):
+
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username = username, password = password)
+            if user is not None:
+                login(request, user)
+                #messages.info(request, f"You are now logged in as: {username}")
+                return redirect("main:homepage")
+            else:
+                return HttpResponse("Invalid username or pasword")#messages.error(request, "Invalid username or password")
+        else:
+            return HttpResponse("Invalid username or pasword")#messages.error(request, "Invalid username or password")
+
+    form = AuthenticationForm()
+    return render(request, "main/login.html", {"form": form})

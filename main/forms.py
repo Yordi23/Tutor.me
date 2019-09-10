@@ -39,8 +39,10 @@ class StudentSignUp_Form(forms.ModelForm):
         model = Student
         fields = ("college_id",)
 
-    def save(self, commit=True):
-        student = super().save(commit=commit)
+    def save(self, user,commit=True):
+        student = super(StudentSignUp_Form,self).save(commit=False)
+        student.user = user
         student.user.is_student = True
+        student.user.save()
         student.save()
         return student

@@ -27,11 +27,9 @@ def tutor_signup(request):
             tutor.identity_document = tutor_form.cleaned_data['identity_document']
             tutor.description = tutor_form.cleaned_data['description']
             tutor.subjects.add(*tutor_form.cleaned_data['subjects'])
-            #subjects = Subject.objects.create(tutor_form.cleaned_data['subjects'])
-            #tutor.subjects.add = subjects
             tutor.save()
             tutor_form.save(user)
-            #tutor_form.save()
+
             #messages.success(request, _('Your profile was successfully updated!'))
             return redirect('main:homepage')
         else:
@@ -57,6 +55,7 @@ def student_signup(request):
             student = Student.objects.create(user = user)
             student.college_id = student_form.cleaned_data['college_id']
             student.save()
+            student_form.save(user)
   
             #messages.success(request, _('Your profile was successfully updated!'))
             return redirect('main:homepage')

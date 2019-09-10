@@ -24,9 +24,11 @@ class TutorSignUp_Form(forms.ModelForm):
         model = Tutor
         fields = ("degree","identity_document","description","subjects")
 
-    def save(self, commit=True):
-        tutor = super().save(commit=commit)
+    def save(self, user, commit=True):
+        tutor = super(TutorSignUp_Form,self).save(commit=False)
+        tutor.user = user
         tutor.user.is_teacher = True
+        tutor.user.save()
         tutor.save()
         return tutor
 

@@ -30,7 +30,7 @@ def tutor_signup(request):
             #subjects = Subject.objects.create(tutor_form.cleaned_data['subjects'])
             #tutor.subjects.add = subjects
             tutor.save()
-            tutor_form.save()
+            tutor_form.save(user)
             #tutor_form.save()
             #messages.success(request, _('Your profile was successfully updated!'))
             return redirect('main:homepage')

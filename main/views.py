@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserSignUp_Form, TutorSignUp_Form
-from .models import Tutor,User, Subject
+from .forms import UserSignUp_Form, TutorSignUp_Form, StudentSignUp_Form
+from .models import Tutor, User, Subject, Student
 
 # Create your views here.
 
@@ -33,29 +33,33 @@ def tutor_signup(request):
             #messages.success(request, _('Your profile was successfully updated!'))
             return redirect('main:homepage')
         else:
-            return HttpResponse("Not valid") #redirect('main:badpage')
+            return HttpResponse("Not valid") 
 
     user_form = UserSignUp_Form
     tutor_form = TutorSignUp_Form
 
     return render (request, "main/tutor_signup.html", context={"user_form":user_form,"tutor_form":tutor_form})
-    
-    #"user_form":user_form
-    #"tutor_form":tutor_form
-    
-# def homepage(request):
-#     return render(request = request, template_name = "main/home.html")
 
-# def StudentSignUpView(request):
-#     model = User
-#     form_class = StudentSignUpForm
-#     template_name = 'registration/signup_form.html'
 
-#     def get_context_data(self, **kwargs):
-#         kwargs['user_type'] = 'student'
-#         return super().get_context_data(**kwargs)
+def student_signup(request):
+    # user_form = UserSignUp_Form
+    # tutor_form = TutorSignUp_Form
 
-#     def form_valid(self, form):
-#         user = form.save()
-#         login(self.request, user)
-#         return redirect('students:quiz_list')
+    if request.method == 'POST':
+        user_form = UserSignUp_Form(request.POST)        
+        student_form = StudentSignUp_Form(request.POST)
+
+        if user_form.is_valid() and student_form.is_valid() :
+            user = user_form.save()
+            
+            student = Student.objects.create()
+  
+            #messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('main:homepage')
+        else:
+            return HttpResponse("Not valid") 
+
+    user_form = UserSignUp_Form
+    student_form = StudentSignUp_Form
+
+    return render (request, "main/tutor_signup.html", context={"user_form":user_form,"student_form":student_form})

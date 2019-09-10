@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Tutor
+from .models import User, Tutor, Student, College,Subject
 from django.db import transaction
 
 class UserSignUp_Form (UserCreationForm):
@@ -23,7 +23,15 @@ class UserSignUp_Form (UserCreationForm):
     
 
 class TutorSignUp_Form(forms.ModelForm):
-    
+
     class Meta:
         model = Tutor
         fields = ("degree","identity_document","description","subjects")
+
+class StudentSignUp_Form(forms.ModelForm):
+
+    college_id = forms.ModelChoiceField(queryset = College.objects.all())
+
+    class Meta:
+        model = Student
+        fields = ("college_id",)

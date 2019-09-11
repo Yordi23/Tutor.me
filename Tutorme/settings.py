@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'Tutor.me',
-        'HOST': 'G3-LAPTOP\MSSQLSERVER01',
-        'USER': 'Yordi23',
+        'HOST': 'SILVIOARZENOPC\SILVIOSERVER',
+        'USER': 'SilvioArzeno',
         'PASSWORD': '1234',
 
         'OPTIONS': {

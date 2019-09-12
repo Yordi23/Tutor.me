@@ -10,4 +10,5 @@ urlpatterns = [
     path('homepage_tutor/', views.homepage_tutor, name = "homepage_tutor"),
     path('homepage_student/', views.homepage_student, name = "homepage_student"),
     path("login/", views.login_request, name="login"),
+    path("logout/", views.logout_request, name="logout"),
 ]

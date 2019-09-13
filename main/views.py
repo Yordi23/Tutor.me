@@ -15,7 +15,7 @@ def homepage_tutor(request):
     return render(request = request, template_name = "main/homepage_tutor.html")
 
 def homepage_student(request):
-    return render(request = request, template_name = "main/homepage_student.html")
+    return render(request = request, template_name = "main/homepage_student.html", context={"tutors":Tutor.objects.all()})
 
 
 

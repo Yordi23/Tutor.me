@@ -34,6 +34,7 @@ class Subject (models.Model):
 class User (AbstractUser):
     is_student = models.BooleanField(default = False)
     is_teacher = models.BooleanField(default = False)
+    phone = models.CharField(max_length=10)
 
     def __str__(self):
         return '%s, %s' % ( self.first_name, self.last_name)
@@ -56,7 +57,7 @@ class Tutor (models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     degree = models.CharField(max_length = 2,choices = DEGREE_LEVEL)
     identity_document = models.CharField(max_length = 11)
-    description = models.CharField(max_length = 100)
+    description = models.TextField(max_length = 100)
     subjects = models.ManyToManyField(Subject, related_name='Subjects')  
 
 # @receiver(post_save, sender=User)

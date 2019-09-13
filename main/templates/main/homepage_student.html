@@ -4,8 +4,26 @@
 
     <p>Bienvenido Estudiante</p>
     <div>
-        
-    <p><a href="/logout">Log out</a></p>
+        <div class="card-group">
+          {% for tutor in tutors %}
+            <div class="card" style="width: 18rem;">
+              <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="card-img-top" alt="Profile Photo">
+              <div class="card-body">
+                <h5 class="card-title">{{tutor.user.username}}</h5>
+                <p class="card-text">{{tutor.description}}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                {% for subject in tutor.subjects.all %}
+                  <li class="list-group-item">{{subject.name}}</li>
+                {% endfor %}
+              </ul>
+              <div class="card-body">
+                <a href="#" class="card-link">Enviar solicitud</a>
+                <a href="#" class="card-link">None</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

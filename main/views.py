@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserSignUp_Form, TutorSignUp_Form, StudentSignUp_Form
-from .models import Tutor, User, Subject, Student
+from .models import Tutor, User, Subject, Student, User_Request
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
@@ -12,7 +12,7 @@ def homepage(request):
     return render(request = request, template_name = "main/home.html")
 
 def homepage_tutor(request):
-    return render(request = request, template_name = "main/homepage_tutor.html")
+    return render(request = request, template_name = "main/homepage_tutor.html", context={"user_requests":User_Request.objects.all()})
 
 def homepage_student(request):
     return render(request = request, template_name = "main/homepage_student.html", context={"tutors":Tutor.objects.all()})

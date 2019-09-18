@@ -19,7 +19,9 @@ class UserSignUp_Form (UserCreationForm):
         return user
     
 
-class TutorSignUp_Form(forms.ModelForm):    
+class TutorSignUp_Form(forms.ModelForm):  
+    #subjects = forms.MultipleChoiceField( widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Tutor
         fields = ("degree","identity_document","description","subjects")

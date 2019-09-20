@@ -1,8 +1,20 @@
-.home-container{
-    display: flex;
-    justify-content: center;
-    margin-top: 200px;
-    background-color: rgb(172, 168, 168);    
+.home-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  background-color: rgb(172, 168, 168);
 }
 
+.cd-fixed-background .cd-content::after {
+  /* phone image on small devices */
+  content: "";
+  display: block;
+  width: 100%;
+  padding: 60% 0;
+  margin: 2em auto 0;
+}
 
+.card-img {
+  display: flex;
+  justify-content: center;
+}

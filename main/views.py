@@ -11,8 +11,13 @@ from django.contrib.auth import login, logout, authenticate
 def homepage(request):
     return render(request = request, template_name = "main/home.html")
 
-def homepage_tutor(request):
-    return render(request = request, template_name = "main/homepage_tutor.html", context={"user_requests":User_Request.objects.all()})
+def homepage_tutor(request, user):
+    user_requests = User_Request.objects.filter(tutor_ID_id=user.id)
+    students = []
+    for user_request in user_requests:
+        students.append(Student.objects.get(user = user_request.student_ID_id))
+
+    return render(request = request, template_name = "main/homepage_tutor.html", context={"students":students})
 
 def homepage_student(request):
     return render(request = request, template_name = "main/homepage_student.html", context={"tutors":Tutor.objects.all()})
@@ -38,7 +43,7 @@ def tutor_signup(request):
 
             login(request, user)
             #messages.success(request, _('Your profile was successfully updated!'))
-            return render (request, "main/homepage_tutor.html")
+            return homepage_tutor(request, user)  #redirect("main:homepage_tutor")
         else:
             return HttpResponse("Not valid") 
 
@@ -63,7 +68,7 @@ def student_signup(request):
             student_form.save(user)
   
             #messages.success(request, _('Your profile was successfully updated!'))
-            return render (request, "main/homepage_student.html")
+            return redirect("main:homepage_student")
         else:
             return HttpResponse("Not valid") 
 
@@ -85,7 +90,7 @@ def login_request (request):
                 login(request, user)
                 #messages.info(request, f"You are now logged in as: {username}")
                 if(user.is_teacher):
-                    return redirect("main:homepage_tutor")
+                    return  homepage_tutor(request, user)  #redirect("main:homepage_tutor")
                 elif(user.is_student):
                     return redirect("main:homepage_student")
             else:

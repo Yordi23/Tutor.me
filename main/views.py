@@ -8,6 +8,14 @@ from django.contrib import messages
 
 # Create your views here.
 
+def studentReq(request,tutorid):
+    username=request.POST.get("Tutor_User",None)
+    Test(test)
+    data={}
+    return HttpResponse(Json.dumbs(data), content_type="Applicaion/Json")
+
+def Test (request, var):
+    return HttpResponse(var)
 
 def homepage(request):
     return render(request = request, template_name = "main/home.html")
@@ -26,6 +34,7 @@ def homepage_tutor(request):
     return render(request = request, template_name = "main/homepage_tutor.html", context={"students":students})
 
 def homepage_student(request):
+    
     return render(request = request, template_name = "main/homepage_student.html", context={"tutors":Tutor.objects.all()})
 
 

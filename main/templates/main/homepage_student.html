@@ -1,10 +1,11 @@
 {% extends "main/header.html"%} 
 {% block content %}
+
 <h1>Bienvenido Estudiante</h1>
 <h2>Listado de tutores</h2>
 <div class="card-group">
   {% for tutor in tutors %}
-  <div>
+  <div id="TutorList">
     <div class="col-sm-4">
       <div class="card" style="width: 400px">
         <div style="display: flex" style="justify-content: center">
@@ -13,7 +14,7 @@
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">
-            <h5 class="card-title">{{ tutor.user.username }}</h5>
+            <h5 class="card-title" id="">{{ tutor.user.username }}</h5>
             <p class="card-text">{{ tutor.description }}</p>
           </span>
           {% for subject in tutor.subjects.all %}
@@ -21,11 +22,37 @@
             {{ subject.name }}
           </li>
           {% endfor %}
-        </div>
-        <button type="button" class="btn btn-primary">Solicitar Tutoría</button>
+        </div> 
+        <button type="button" class="btn btn-primary" value="{{tutor.user.username}}" onclick="Test(this.value)">Solicitar Tutoría</button>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
+
+<script type="text/javascript">
+
+    function Test2(element){
+      console.log(element) 
+    }
+
+    function Test(element){
+      url = '../homepage_student.html'
+      $('ajaxProgress').show();
+      $.ajax({
+        type: "POST",
+        url: url,
+        dataType: JSON,
+        async: true,
+        data: {
+         Tutor_User: element,
+        
+      },
+        success: function(result){
+          alert("Success");
+          $('.ajaxProgress').hide();
+        }
+      });
+    }
+  </script>
 {% endblock %}

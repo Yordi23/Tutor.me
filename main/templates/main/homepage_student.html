@@ -1,6 +1,7 @@
 {% extends "main/header.html"%} 
 {% block content %}
-<h3>Bienvenido Estudiante</h3>
+<h1>Bienvenido Estudiante</h1>
+<h2>Listado de tutores</h2>
 <div class="card-group">
   {% for tutor in tutors %}
   <div>
@@ -21,7 +22,7 @@
           </li>
           {% endfor %}
         </div>
-        <button type="button" class="btn btn-primary">Solicitar</button>
+        <button type="button" class="btn btn-primary">Solicitar Tutoría</button>
       </div>
     </div>
   </div>

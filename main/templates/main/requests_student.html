@@ -1,0 +1,43 @@
+{% extends "main/header.html"%} {% block content %}
+
+<h1>Solicitudes </h1>
+
+<h2>Pendientes</h2>
+<div>
+  <ul class="collection">
+    {% for tutor in pending %}
+    <li class="collection-item avatar">
+      <img
+        src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+        alt="Profile Picture"
+        class="circle"
+      />
+      <span class="title">{{ tutor.user.username }}</span>
+      <p>
+        {{ tutor.description }}
+      </p>
+      <a class="waves-effect waves-light btn secondary-content white-text">Cancelar Solicitud</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<h2>Aceptadas</h2>
+<ul class="collection">
+  {% for tutor in accepted %}
+  <li class="collection-item avatar">
+    <img
+      src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+      alt="Profile Picture"
+      class="circle"
+    />
+    <span class="title">{{ tutor.user.username }}</span>
+    <p>
+      {{ tutor.description }}
+    </p>
+    <p class="secondary-content">{{ tutor.user.phone }}</p>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

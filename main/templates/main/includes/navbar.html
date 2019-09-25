@@ -5,12 +5,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
+        
+        {% if user.is_student %}
         <li class="nav-item active">
-          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/homepage_student">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/requests_student">Solicitudes</a>
+        </li>
+        {% elif user.is_teacher %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/homepage_tutor">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Historial</a>
         </li>
+        {% endif %}
+
       </ul>
       <span class="navbar-text">
             {% if user.is_authenticated %}

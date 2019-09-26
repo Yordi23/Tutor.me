@@ -79,12 +79,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'Tutor.me',
-        'HOST': 'INIX-PC\INIX',
+        'HOST': 'INIX-LAPTOP\XINISERVER',
         'USER': 'Inix23',
         'PASSWORD': 'xini',
 
         'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
+            'driver': 'ODBC Driver 13 for SQL Server',
         }
     }
 }

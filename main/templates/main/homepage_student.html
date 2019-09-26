@@ -23,7 +23,7 @@
           </li>
           {% endfor %}
         </div> 
-        <button type="button" class="btn btn-primary" value="{{tutor.user.username}}" onclick="Test(this.value)">Solicitar Tutoría</button>
+        <button type="button" class="btn btn-primary" value="{{tutor.user_id}}" onclick="Test(this.value)">Solicitar Tutoría</button>
         <buttom>
       </div>
     </div>
@@ -41,7 +41,7 @@
       
       $.ajax({
         method: "POST",
-        url: '/homepage_student/',
+        url: '/CreateRequest/',
         dataType: "json",
         async: true,
         data: {

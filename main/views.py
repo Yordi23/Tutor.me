@@ -7,7 +7,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.http import JsonResponse
 
-import simplejson as json
 
 # Create your views here.
 
@@ -24,6 +23,19 @@ def studentReq(request):
     (username)
     return JsonResponse(response_data)
 
+def CreateRequest(request):
+    if request.method == "POST":
+        tutorId=request.POST.get("Tutor_User","")
+        print(tutorId)
+    response_data={}
+    try:
+        response_data['result']='We got it'
+        response_data['message']=username
+    except:
+        response_data['result']='We cant get it'
+        response_data['message']='Error'
+
+    return JsonResponse(response_data)
 
 def homepage(request):
     return render(request = request, template_name = "main/home.html")
@@ -52,7 +64,6 @@ def homepage_student(request):
         except:
             response_data['result']='We cant get it'
             response_data['message']='Error'
-        (username)
         return JsonResponse(response_data)
     else:        
         return render(request = request, template_name = "main/homepage_student.html", context={"tutors":Tutor.objects.all()})

@@ -24,6 +24,7 @@
           {% endfor %}
         </div> 
         <button type="button" class="btn btn-primary" value="{{tutor.user.username}}" onclick="Test(this.value)">Solicitar Tutoría</button>
+        <buttom>
       </div>
     </div>
   </div>
@@ -37,22 +38,20 @@
     }
 
     function Test(element){
-      url = '../homepage_student.html'
-      $('ajaxProgress').show();
+      
       $.ajax({
-        type: "POST",
-        url: url,
-        dataType: JSON,
+        method: "POST",
+        url: '/homepage_student/',
+        dataType: "json",
         async: true,
         data: {
-         Tutor_User: element,
-        
+          csrfmiddlewaretoken:"{{ csrf_token }}",
+          Tutor_User: element,  
       },
-        success: function(result){
+        success: function(json){
           alert("Success");
-          $('.ajaxProgress').hide();
         }
       });
-    }
+    };
   </script>
 {% endblock %}

@@ -3,34 +3,55 @@
 
 <h1>Bienvenido Estudiante</h1>
 <h2>Listado de tutores</h2>
-
-<div class="row">
+<div class="card-group">
   {% for tutor in tutors %}
-  <div class="col s4">
+  <div id="TutorList">
     <div class="col-sm-4">
-      <div class="card" style="width: 300px">
+      <div class="card" style="width: 400px">
         <div style="display: flex" style="justify-content: center">
           <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-            class="card-img activator" alt="..."  />
+            class="card-img" alt="..." style="width: 200px" />
         </div>
-        <div class="card-content" style="height: 300px">
-          <h5 class="card-title activator grey-text text-darken-4" style="margin-top: 4px">{{ tutor.user.username }}<i class="material-icons right">more_vert</i></span></h5>
-            <h6 p class="card-text" style="margin-bottom: 18px">{{ tutor.description|truncatechars:50 }}</p></h6>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">
+            <h5 class="card-title" id="">{{ tutor.user.username }}</h5>
+            <p class="card-text">{{ tutor.description }}</p>
           </span>
           {% for subject in tutor.subjects.all %}
           <li class="list-group-item">
             {{ subject.name }}
           </li>
           {% endfor %}
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <h6 p class="card-text" style="margin-bottom: 18px">{{ tutor.description}}</p></h6>
-        </div>
-        <button type="button" class="btn btn-primary" style="background-color: #14437B">Solicitar Tutoría</button>
+        </div> 
+        <button type="button" class="btn btn-primary" value="{{tutor.user_id}}" onclick="Test(this.value)">Solicitar Tutoría</button>
+        <buttom>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
+
+<script type="text/javascript">
+
+    function Test2(element){
+      console.log(element) 
+    }
+
+    function Test(element){
+      
+      $.ajax({
+        method: "POST",
+        url: '/CreateRequest/',
+        dataType: "json",
+        async: true,
+        data: {
+          csrfmiddlewaretoken:"{{ csrf_token }}",
+          Tutor_User: element,  
+      },
+        success: function(json){
+          alert("Success");
+        }
+      });
+    };
+  </script>
 {% endblock %}

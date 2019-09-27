@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import include, url
 from . import views
 
 app_name = "main"
@@ -12,4 +13,5 @@ urlpatterns = [
     path("login/", views.login_request, name="login"),
     path("logout/", views.logout_request, name="logout"),
     path("requests_student/", views.requests_student, name="requests_student"),
+    url(r'^CreateRequest/$',views.CreateRequest,name="CreateRequest"),
 ]

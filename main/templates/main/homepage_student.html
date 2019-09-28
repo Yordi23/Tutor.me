@@ -4,7 +4,7 @@
 <h1>Bienvenido Estudiante</h1>
 <h2>Listado de tutores</h2>
 <div class="row">
-  {% for tutor in tutors %}
+  {% for tutor,value in tutors.items %}
   <div  class="col s4" id="TutorList">
     <div class="col-sm-4">
       <div class="card" style="width: 300px">
@@ -25,9 +25,12 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
           <h6 p class="card-text" style="margin-bottom: 18px">{{ tutor.description}}</p></h6>
-        </div> 
-        <button type="button" class="btn btn-primary" style="background-color: #14437B" value="{{tutor.user_id}}" onclick="Test(this.value)">Solicitar Tutoría</button>
-
+        </div>
+        {% if value %}
+          <button type="button" class="btn btn-primary disabled" >Solicitar Tutoría</button>
+        {% elif value == False %}
+          <button type="button" class="btn btn-primary" style="background-color: #14437B" value="{{tutor.user_id}}" onclick="CreateRequest(this.value)">Solicitar Tutoría</button>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -36,11 +39,7 @@
 
 <script type="text/javascript">
 
-    function Test2(element){
-      console.log(element) 
-    }
-
-    function Test(element){
+    function CreateRequest(element){
       
       $.ajax({
         method: "POST",
@@ -51,9 +50,6 @@
           csrfmiddlewaretoken:"{{ csrf_token }}",
           Tutor_User: element,  
       },
-        success: function(json){
-          alert("Success");
-        }
       });
     };
   </script>

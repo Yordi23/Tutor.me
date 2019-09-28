@@ -5,7 +5,7 @@
 <h2>Pendientes</h2>
 <div>
   <ul class="collection">
-    {% for tutor in pending %}
+    {% for request,tutor in pending.items %}
     <li class="collection-item avatar">
       <img
         src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
@@ -16,7 +16,7 @@
       <p>
         {{ tutor.description }}
       </p>
-      <a class="waves-effect waves-light btn secondary-content white-text">Cancelar Solicitud</a>
+      <a class="waves-effect waves-light btn secondary-content white-text" value="{{request.id}}" onclick="CancelRequest(this.value)">Cancelar Solicitud</a>
     </li>
     {% endfor %}
   </ul>
@@ -24,7 +24,7 @@
 
 <h2>Aceptadas</h2>
 <ul class="collection">
-  {% for tutor in accepted %}
+  {% for request,tutor in accepted.items %}
   <li class="collection-item avatar">
     <img
       src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
@@ -39,5 +39,23 @@
   </li>
   {% endfor %}
 </ul>
+
+<script type="text/javascript">
+
+  function CancelRequest(element){
+    
+    $.ajax({
+      method: "POST",
+      url: '/CancelRequest/',
+      dataType: "json",
+      async: true,
+      data: {
+        csrfmiddlewaretoken:"{{ csrf_token }}",
+        request_id: element,  
+    },
+    });
+  };
+</script>
+
 
 {% endblock %}

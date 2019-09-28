@@ -14,4 +14,5 @@ urlpatterns = [
     path("logout/", views.logout_request, name="logout"),
     path("requests_student/", views.requests_student, name="requests_student"),
     url(r'^CreateRequest/$',views.CreateRequest,name="CreateRequest"),
+    url(r'^CancelRequest/$',views.CancelRequest,name="CancelRequest"),
 ]

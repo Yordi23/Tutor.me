@@ -34,6 +34,26 @@ def CancelRequest(request):
 
     return True
 
+def AcceptRequest(request):
+    if request.method == "POST":
+        request_id=request.POST.get("request_id","")
+        get_request = User_Request.objects.get(id = request_id)
+        get_request.status = 'A'
+        get_request.save()
+        messages.success(request, f"Solicitud aceptada")
+
+    return True
+
+def RejectRequest(request):
+    if request.method == "POST":
+        request_id=request.POST.get("request_id","")
+        get_request = User_Request.objects.get(id = request_id)
+        get_request.status = 'R'
+        get_request.save()
+        messages.success(request, f"Solicitud rechazada")
+
+    return True
+
 def homepage(request):
     return render(request = request, template_name = "main/home.html")
 
@@ -43,12 +63,12 @@ def homepage_tutor(request):
     if request.user.is_authenticated:
         user_id = request.user.id
 
-    user_requests = User_Request.objects.filter(tutor_ID_id=user_id)
-    students = []
+    user_requests = User_Request.objects.filter(tutor_ID_id=user_id,status='P')
+    dic_students = {}
     for user_request in user_requests:
-        students.append(Student.objects.get(user = user_request.student_ID_id))
+        dic_students[user_request] = Student.objects.get(user = user_request.student_ID_id)
 
-    return render(request = request, template_name = "main/homepage_tutor.html", context={"students":students})
+    return render(request = request, template_name = "main/homepage_tutor.html", context={"students":dic_students})
 
 def homepage_student(request):
     # if request.method == "POST":
@@ -180,3 +200,22 @@ def requests_student(request):
         accepted_tutors[user_request] = Tutor.objects.get(user = user_request.tutor_ID_id)
 
     return render(request = request, template_name = "main/requests_student.html", context={"pending":pending_tutors,"accepted":accepted_tutors})
+
+def requests_tutor(request):
+    user_id = None
+   
+    if request.user.is_authenticated:
+        user_id = request.user.id
+
+    rejected_user_requests = User_Request.objects.filter(tutor_ID_id=user_id,status='R')
+    accepted_user_requests = User_Request.objects.filter(tutor_ID_id=user_id,status='A')
+    rejected_students = {}
+    accepted_students = {}
+
+    for user_request in rejected_user_requests:
+        rejected_students[user_request] = Student.objects.get(user = user_request.student_ID_id)
+    
+    for user_request in accepted_user_requests:
+        accepted_students[user_request] = Student.objects.get(user = user_request.student_ID_id)
+
+    return render(request = request, template_name = "main/requests_tutor.html", context={"rejected":rejected_students,"accepted":accepted_students})

@@ -1,0 +1,43 @@
+{% extends "main/header.html"%} {% block content %}
+
+<h1>Historial de Solicitudes </h1>
+
+<h2>Aceptadas</h2>
+<div>
+  <ul class="collection">
+    {% for request,student in accepted.items %}
+    <li class="collection-item avatar">
+      <img
+        src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+        alt="Profile Picture"
+        class="circle"
+      />
+      <span class="title">{{ student.user.username }}</span>
+      <p>
+        {{ student.college }}
+      </p>
+      
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<h2>Rechazadas</h2>
+<ul class="collection">
+  {% for request,student in rejected.items %}
+  <li class="collection-item avatar">
+    <img
+      src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+      alt="Profile Picture"
+      class="circle"
+    />
+    <span class="title">{{ student.user.username }}</span>
+    <p>
+      {{ student.college }}
+    </p>
+    <p class="secondary-content"></p>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

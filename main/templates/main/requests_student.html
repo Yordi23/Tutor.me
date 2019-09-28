@@ -16,7 +16,7 @@
       <p>
         {{ tutor.description }}
       </p>
-      <a class="waves-effect waves-light btn secondary-content white-text" value="{{request.id}}" onclick="CancelRequest(this.value)">Cancelar Solicitud</a>
+      <button type="button" class="btn btn-primary secondary-content white-text" style="background-color: #14437B" value="{{request.id}}" onclick="CancelRequest(this.value)">Cancelar Solicitud</button>
     </li>
     {% endfor %}
   </ul>

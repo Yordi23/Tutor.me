@@ -13,6 +13,9 @@ urlpatterns = [
     path("login/", views.login_request, name="login"),
     path("logout/", views.logout_request, name="logout"),
     path("requests_student/", views.requests_student, name="requests_student"),
+    path("requests_tutor/", views.requests_tutor, name="requests_tutor"),
     url(r'^CreateRequest/$',views.CreateRequest,name="CreateRequest"),
     url(r'^CancelRequest/$',views.CancelRequest,name="CancelRequest"),
+    url(r'^AcceptRequest/$',views.AcceptRequest,name="AcceptRequest"),
+    url(r'^RejectRequest/$',views.RejectRequest,name="RejectRequest"),
 ]

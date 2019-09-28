@@ -4,7 +4,7 @@
 <h2>Solicitudes</h2>
 
 <ul class="collection">
-  {% for student in students %}
+  {% for request,student in students.items %}
   <li class="collection-item avatar">
     <img
       src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
@@ -16,11 +16,46 @@
       {{ student.college_id }}
     </p>
     <div class="secondary-content">
-      <a class="waves-effect waves-light btn white-text">Aceptar</a>
-      <a class="waves-effect waves-light btn white-text">Cancelar</a>
+      <button type="button" class="btn btn-primary white-text" style="background-color: #14437B" value="{{request.id}}" onclick="AcceptRequest(this.value)">Aceptar</button>
+      <button type="button" class="btn btn-primary white-text" style="background-color: #14437B" value="{{request.id}}" onclick="RejectRequest(this.value)">Rechazar</button>
     </div>
   </li>
   {% endfor %}
 </ul>
+
+<script type="text/javascript">
+
+  function AcceptRequest(element){
+    
+    $.ajax({
+      method: "POST",
+      url: '/AcceptRequest/',
+      dataType: "json",
+      async: true,
+      data: {
+        csrfmiddlewaretoken:"{{ csrf_token }}",
+        request_id: element,  
+    },
+    });
+  };
+</script>
+
+<script type="text/javascript">
+
+  function RejectRequest(element){
+    
+    $.ajax({
+      method: "POST",
+      url: '/RejectRequest/',
+      dataType: "json",
+      async: true,
+      data: {
+        csrfmiddlewaretoken:"{{ csrf_token }}",
+        request_id: element,  
+    },
+    });
+  };
+</script>
+
 
 {% endblock %}

@@ -3,15 +3,14 @@
 
 <h1>Bienvenido Estudiante</h1>
 <h2>Listado de tutores</h2>
-
 <div class="row">
-  {% for tutor in tutors %}
-  <div class="col s4">
+  {% for tutor,value in tutors.items %}
+  <div  class="col s4" id="TutorList">
     <div class="col-sm-4">
       <div class="card" style="width: 300px">
         <div style="display: flex" style="justify-content: center">
           <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-            class="card-img activator" alt="..."  />
+            class="card-img activator" alt="..." />
         </div>
         <div class="card-content" style="height: 300px">
           <h5 class="card-title activator grey-text text-darken-4" style="margin-top: 4px">{{ tutor.user.username }}<i class="material-icons right">more_vert</i></span></h5>
@@ -27,10 +26,31 @@
           <span class="card-title grey-text text-darken-4">Conoce tu tutor<i class="material-icons right">close</i></span>
           <h6 p class="card-text" style="margin-bottom: 18px">{{ tutor.description}}</p></h6>
         </div>
-        <button type="button" class="btn btn-primary" style="background-color: #14437B">Solicitar Tutoría</button>
+        {% if value %}
+          <button type="button" class="btn btn-primary disabled" >Solicitar Tutoría</button>
+        {% elif value == False %}
+          <button type="button" class="btn btn-primary" style="background-color: #14437B" value="{{tutor.user_id}}" onclick="CreateRequest(this.value)">Solicitar Tutoría</button>
+        {% endif %}
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
+
+<script type="text/javascript">
+
+    function CreateRequest(element){
+      
+      $.ajax({
+        method: "POST",
+        url: '/CreateRequest/',
+        dataType: "json",
+        async: true,
+        data: {
+          csrfmiddlewaretoken:"{{ csrf_token }}",
+          Tutor_User: element,  
+      },
+      });
+    };
+  </script>
 {% endblock %}

@@ -9,8 +9,8 @@ from django.contrib import messages
 # Create your views here.
 
 
-def homepage(request):
-    return render(request = request, template_name = "main/home.html")
+# def homepage(request):
+#     return render(request = request, template_name = "main/home.html")
 
 def homepage_tutor(request):
     user_id = None
@@ -87,7 +87,7 @@ def student_signup(request):
     return render (request, "main/student_signup.html", context={"user_form":user_form,"student_form":student_form})
 
 
-def login_request (request):
+def homepage (request):
 
     if request.method == "POST":
         form = AuthenticationForm(request, data = request.POST)
@@ -108,7 +108,7 @@ def login_request (request):
            messages.error(request, "Nombre de usuario o contraseña inválido")
 
     form = AuthenticationForm()
-    return render(request, "main/login.html", {"form": form})
+    return render(request, "main/home.html", {"form": form})
 
 
 def logout_request(request):

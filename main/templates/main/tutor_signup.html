@@ -1,12 +1,14 @@
 {% extends "main/header2.html"%} {% block content %}
 <form method="POST">
-  {% csrf_token %}
-  <div>
-    <div class="container rounded-lg" style="background-color: #FFF">
+  
+    <div class="signContainer rounded-lg" style="background-color: #FFF">
+      <div class="signItems" id="forms">
+      <h1>KLK</h1>
+      {% csrf_token %}
       {{ user_form.as_p }}
       {{ tutor_form.as_p }}
+      </div>
     </div>
-  </div>
 
   <div>
     <button type="submit">Register</button>

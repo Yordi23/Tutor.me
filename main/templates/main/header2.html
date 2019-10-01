@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,9 +13,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+    <style>
+    /* 224f88 MAIN COLOR THEME */
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  background-color: rgb(172, 168, 168);
+}
+
+.cd-fixed-background .cd-content::after {
+  /* phone image on small devices */
+  content: "";
+  display: block;
+  width: 100%;
+  padding: 60% 0;
+  margin: 2em auto 0;
+}
+
+.card-img {
+  display: flex;
+  justify-content: center;
+
+}
 
 
+/* body {
+  background-repeat: no-repeat;
+  background-size: 93%;
+} */
+
+
+.bg{
+  background-image: url("https://i.imgur.com/oguG9pX.jpg");
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+    
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container2 {
+  display: flex;
+  padding: 16px;
+  background-color: #fff;
+  height: 500px;
+  width: 500px;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 25px;
+
+}
+
+
+
+.containerInfo{
+  display: flex;
+}
+
+.containerPic{
+  display: flex;
+
+}
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+    </style>
 
 
   </head>

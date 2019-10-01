@@ -14,7 +14,8 @@
       />
       <span class="title">{{ tutor.user.username }}</span>
       <p>
-        {{ tutor.description }}
+        {{ tutor.description }} <br>
+        {{ request.request_date}}
       </p>
       <button type="button" class="btn btn-primary secondary-content white-text" style="background-color: #14437B" value="{{request.id}}" onclick="CancelRequest(this.value)">Cancelar Solicitud</button>
     </li>
@@ -33,7 +34,8 @@
     />
     <span class="title">{{ tutor.user.username }}</span>
     <p>
-      {{ tutor.description }}
+      {{ tutor.description }} <br>
+      {{ request.request_date}}
     </p>
     <p class="secondary-content">{{ tutor.user.phone }}</p>
   </li>

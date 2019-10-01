@@ -13,7 +13,8 @@
     />
     <span class="title">{{ student.user.username }}</span>
     <p>
-      {{ student.college_id }}
+      {{ student.college_id }}<br>
+      {{ request.request_date}}
     </p>
     <div class="secondary-content">
       <button type="button" class="btn btn-primary white-text" style="background-color: #14437B" value="{{request.id}}" onclick="AcceptRequest(this.value)">Aceptar</button>

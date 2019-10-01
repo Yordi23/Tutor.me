@@ -3,7 +3,7 @@
   } 
 
   async function ReloadPage(){
-    await sleep(20)
+    await sleep(50)
     window.location.reload(true);
 
   };

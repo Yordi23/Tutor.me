@@ -108,15 +108,21 @@ img.avatar {
   display: flex;
   padding: 16px;
   background-color: #fff;
-  height: 750px;
+  height: 650px;
   width: 500px;
   justify-content: center;
   flex-direction: column;
   border-radius: 25px;
 }
 
+/* .margin-adjust{
+  margin-top: 45px;
+  margin-bottom: 100px;
+} */
 
-}
+
+
+
 .containerInfo{
   display: flex;
 }

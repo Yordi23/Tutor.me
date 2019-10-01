@@ -176,7 +176,7 @@ def homepage (request):
                 login(request, user)
                 messages.info(request, f"Acaba de iniciar sesión como: {user.username}")
                 if(user.is_teacher):
-                    return  homepage_tutor(request)  #redirect("main:homepage_tutor")
+                    return  redirect("main:homepage_tutor")  #redirect("main:homepage_tutor")
                 elif(user.is_student):
                     return redirect("main:homepage_student")
             else:
@@ -189,7 +189,7 @@ def homepage (request):
 
 def logout_request(request):
     logout(request)
-    messages.info(request, "Logged out successfully!")
+    # messages.info(request, "Logged out successfully!")
     return redirect("main:homepage")
 
 def requests_student(request):

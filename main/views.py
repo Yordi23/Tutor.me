@@ -6,24 +6,26 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 # Create your views here.
 
+@csrf_exempt
 def CreateRequest(request):
     if request.method == "POST":
         tutorId=request.POST.get("Tutor_User","")
         new_student = Student.objects.get(user = request.user.id)
         new_tutor = Tutor.objects.get(user = tutorId)
-
-
         user_request = User_Request.objects.create(student_ID=new_student,tutor_ID=new_tutor,)
         user_request.save()
         messages.success(request, f"Solicitud enviada")
 
+    response_data={}
+    return JsonResponse(response_data)
 
-    return True
-
+@csrf_exempt
 def CancelRequest(request):
     if request.method == "POST":
         request_id=request.POST.get("request_id","")
@@ -32,8 +34,11 @@ def CancelRequest(request):
         get_request.save()
         messages.success(request, f"Solicitud cancelada")
 
-    return True
+    response_data={}
+    return JsonResponse(response_data)
 
+
+@csrf_exempt
 def AcceptRequest(request):
     if request.method == "POST":
         request_id=request.POST.get("request_id","")
@@ -42,8 +47,10 @@ def AcceptRequest(request):
         get_request.save()
         messages.success(request, f"Solicitud aceptada")
 
-    return True
+    response_data={}
+    return JsonResponse(response_data)
 
+@csrf_exempt
 def RejectRequest(request):
     if request.method == "POST":
         request_id=request.POST.get("request_id","")
@@ -52,7 +59,9 @@ def RejectRequest(request):
         get_request.save()
         messages.success(request, f"Solicitud rechazada")
 
-    return True
+    response_data={}
+    return JsonResponse(response_data)
+
 
 # def homepage(request):
 #     return render(request = request, template_name = "main/home.html")

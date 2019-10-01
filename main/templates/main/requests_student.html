@@ -40,22 +40,5 @@
   {% endfor %}
 </ul>
 
-<script type="text/javascript">
-
-  function CancelRequest(element){
-    
-    $.ajax({
-      method: "POST",
-      url: '/CancelRequest/',
-      dataType: "json",
-      async: true,
-      data: {
-        csrfmiddlewaretoken:"{{ csrf_token }}",
-        request_id: element,  
-    },
-    });
-  };
-</script>
-
 
 {% endblock %}

@@ -1,8 +1,6 @@
 {% extends "main/header2.html"%} {% block content %}
 <div class="bg">
-
   <div class="container2">
-
     <div class="containerPic" style="align-self: center">
       <img src="https://i.imgur.com/5p8yWEQ.png" height="190px" width="190px">
     </div>
@@ -11,15 +9,23 @@
           {% csrf_token %}
           {{form.as_p}}
           <div>
-              <button type="submit">Login       
+              <button type="submit" style="background-color: #224f88">Login
               </button>
           </div>
       </form>
-    </div>
+    </div><br>
+    <p style="text-align: center">No tienes cuenta? Registrate aquí:</p>
 
-    <p>Registrar como:</p>
+    <!-- <a href="/tutor_signup" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="background-color:#224f88 ">Como Tutor</a>
+    <br>
+    <a href="/student_signup" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="background-color:#224f88">Como Estudiante </a> -->
+
+
+    <button type="submit" style="background-color: #224f88">Como Tutor       
+    <button type="submit" style="background-color: #224f88">Como Estudiante       
+<!-- 
     <p><a href="/tutor_signup">Tutor</a></p>
-    <p><a href="/student_signup">Estudiante</a></p>
+    <p><a href="/student_signup">Estudiante</a></p> -->
     </div>
 </div>
 {% endblock %}

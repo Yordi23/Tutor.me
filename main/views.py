@@ -63,8 +63,6 @@ def RejectRequest(request):
     return JsonResponse(response_data)
 
 
-# def homepage(request):
-#     return render(request = request, template_name = "main/home.html")
 
 def homepage_tutor(request):
     user_id = None
@@ -77,21 +75,11 @@ def homepage_tutor(request):
     for user_request in user_requests:
         dic_students[user_request] = Student.objects.get(user = user_request.student_ID_id)
 
+
     return render(request = request, template_name = "main/homepage_tutor.html", context={"students":dic_students})
 
 def homepage_student(request):
-    # if request.method == "POST":
-    #     username=request.POST.get("Tutor_User","")
-    #     print(username)
-    #     response_data={}
-    #     try:
-    #         response_data['result']='We got it'
-    #         response_data['message']=username
-    #     except:
-    #         response_data['result']='We cant get it'
-    #         response_data['message']='Error'
-    #     return JsonResponse(response_data)
-    # else:        
+      
     student_requests = User_Request.objects.filter(student_ID = request.user.id, status = 'P')
     tutors = Tutor.objects.all()
     dic_tutors = {}
@@ -105,6 +93,7 @@ def homepage_student(request):
         
         if flag == False:
             dic_tutors[tutor] = flag
+
 
     return render(request = request, template_name = "main/homepage_student.html", context={"tutors":dic_tutors})
 
@@ -127,8 +116,8 @@ def tutor_signup(request):
             messages.success(request, f"Nueva cuenta registrada exitosamente")
 
             login(request, user)
-            #messages.success(request, _('Your profile was successfully updated!'))
-            return homepage_tutor(request)  #redirect("main:homepage_tutor")
+            
+            return homepage_tutor(request) 
         else:
             messages.warning(request, "Datos inválidos")
 
@@ -153,7 +142,6 @@ def student_signup(request):
             messages.success(request, f"Nueva cuenta registrada exitosamente")
 
             login(request, user)
-            #messages.success(request, _('Your profile was successfully updated!'))
             return redirect("main:homepage_student")
         else:
             messages.warning(request, "Datos inválidos")
@@ -176,7 +164,7 @@ def homepage (request):
                 login(request, user)
                 messages.info(request, f"Acaba de iniciar sesión como: {user.username}")
                 if(user.is_teacher):
-                    return  redirect("main:homepage_tutor")  #redirect("main:homepage_tutor")
+                    return  redirect("main:homepage_tutor")
                 elif(user.is_student):
                     return redirect("main:homepage_student")
             else:
@@ -189,7 +177,6 @@ def homepage (request):
 
 def logout_request(request):
     logout(request)
-    # messages.info(request, "Logged out successfully!")
     return redirect("main:homepage")
 
 def requests_student(request):

@@ -60,14 +60,6 @@ class Tutor (models.Model):
     description = models.TextField(max_length = 100)
     subjects = models.ManyToManyField(Subject, related_name='Subjects')  
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Tutor.objects.create(user=instance)
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.tutor.save()
 
 class User_Request (models.Model):
      

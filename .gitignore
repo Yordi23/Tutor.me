@@ -7,3 +7,5 @@ Tutor.me.mdf
 Tutorme/settings.py
 Tutor.me.mdf
 Tutorme/settings.py
+*.pyc
+*.pyc

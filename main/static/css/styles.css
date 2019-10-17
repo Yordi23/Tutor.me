@@ -28,8 +28,9 @@
   background-size: 93%;
 } */
 
-
+/* https://i.imgur.com/x8e3JsZ.jpg */
 .bg{
+
   background-image: url("https://i.imgur.com/oguG9pX.jpg");
     /* Set rules to fill background */
     min-height: 100%;
@@ -48,7 +49,7 @@
     background-size: cover;
     display: flex;
     align-items: center;
-
+    justify-content: center;
 
 }
 
@@ -107,16 +108,21 @@ img.avatar {
   display: flex;
   padding: 16px;
   background-color: #fff;
-  height: 500px;
+  height: 650px;
   width: 500px;
   justify-content: center;
   flex-direction: column;
   border-radius: 25px;
-
 }
 
+/* .margin-adjust{
+  margin-top: 45px;
+  margin-bottom: 100px;
+} */
 
-}
+
+
+
 .containerInfo{
   display: flex;
 }

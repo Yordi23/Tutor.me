@@ -24,39 +24,4 @@
   {% endfor %}
 </ul>
 
-<script type="text/javascript">
-
-  function AcceptRequest(element){
-    
-    $.ajax({
-      method: "POST",
-      url: '/AcceptRequest/',
-      dataType: "json",
-      async: true,
-      data: {
-        csrfmiddlewaretoken:"{{ csrf_token }}",
-        request_id: element,  
-    },
-    });
-  };
-</script>
-
-<script type="text/javascript">
-
-  function RejectRequest(element){
-    
-    $.ajax({
-      method: "POST",
-      url: '/RejectRequest/',
-      dataType: "json",
-      async: true,
-      data: {
-        csrfmiddlewaretoken:"{{ csrf_token }}",
-        request_id: element,  
-    },
-    });
-  };
-</script>
-
-
 {% endblock %}

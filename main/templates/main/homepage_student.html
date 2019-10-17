@@ -37,20 +37,4 @@
   {% endfor %}
 </div>
 
-<script type="text/javascript">
-
-    function CreateRequest(element){
-      
-      $.ajax({
-        method: "POST",
-        url: '/CreateRequest/',
-        dataType: "json",
-        async: true,
-        data: {
-          csrfmiddlewaretoken:"{{ csrf_token }}",
-          Tutor_User: element,  
-      },
-      });
-    };
-  </script>
 {% endblock %}
